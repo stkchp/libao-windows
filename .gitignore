@@ -54,10 +54,13 @@ libao/src/ao.vers
 libao/src/ao_au.c
 libao/src/ao_raw.c
 libao/src/ao_aixs.c
-libao/src/ao_null.c
 libao/include/ao/os_types.h
 
 # temp file
+*.user
 tmp/
 build/
 .vs/
+
+Debug/
+Release/
