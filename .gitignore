@@ -60,3 +60,4 @@ libao/include/ao/os_types.h
 # temp file
 tmp/
 build/
+.vs/
