@@ -1,14 +1,14 @@
---- ao/ao_private.h	2012-02-14 09:46:05.000000000 +0900
-+++ ao/ao_private.h	2017-02-03 22:32:11.821947385 +0900
-@@ -138,13 +138,13 @@
+--- ao/ao_private.h
++++ ao/ao_private.h
+@@ -138,13 +138,13 @@ struct ao_functions {
  
  void ao_read_config_files (ao_config *config);
  
 -#define adebug(format, args...) {\
 +#define adebug(format, ...) {\
-     if(device->verbose==2){                                             \
+     if(!device || device->verbose==2){                                  \
        if(strcmp(format,"\n")){                                          \
-         if(device->funcs->driver_info()->short_name){                   \
+         if(device && device->funcs->driver_info()->short_name){         \
 -          fprintf(stderr,"ao_%s debug: " format,device->funcs->driver_info()->short_name,## args); \
 +          fprintf(stderr,"ao_%s debug: " format,device->funcs->driver_info()->short_name,__VA_ARGS__); \
          }else{                                                          \
@@ -17,15 +17,15 @@
          }                                                               \
        }else{                                                            \
          fprintf(stderr,"\n");                                           \
-@@ -152,13 +152,13 @@
+@@ -152,13 +152,13 @@ void ao_read_config_files (ao_config *config);
      }                                                                   \
    }
  
 -#define averbose(format, args...) {\
 +#define averbose(format, ...) {\
-     if(device->verbose>0){                                              \
+     if(!device || device->verbose>0){                                   \
        if(strcmp(format,"\n")){                                          \
-         if(device->funcs->driver_info()->short_name){                   \
+         if(device && device->funcs->driver_info()->short_name){         \
 -          fprintf(stderr,"ao_%s info: " format,device->funcs->driver_info()->short_name,## args); \
 +          fprintf(stderr,"ao_%s info: " format,device->funcs->driver_info()->short_name,__VA_ARGS__); \
          }else{                                                          \
@@ -34,15 +34,15 @@
          }                                                               \
        }else{                                                            \
          fprintf(stderr,"\n");                                           \
-@@ -166,13 +166,13 @@
+@@ -166,13 +166,13 @@ void ao_read_config_files (ao_config *config);
      }                                                                   \
    }
  
 -#define ainfo(format, args...) {\
 +#define ainfo(format, ...) {\
-     if(device->verbose>=0){                                             \
+     if(!device || device->verbose>=0){                                  \
        if(strcmp(format,"\n")){                                          \
-         if(device->funcs->driver_info()->short_name){                   \
+         if(device && device->funcs->driver_info()->short_name){         \
 -          fprintf(stderr,"ao_%s info: " format,device->funcs->driver_info()->short_name,## args); \
 +          fprintf(stderr,"ao_%s info: " format,device->funcs->driver_info()->short_name,__VA_ARGS__); \
          }else{                                                          \
@@ -51,15 +51,15 @@
          }                                                               \
        }else{                                                            \
          fprintf(stderr,"\n");                                           \
-@@ -180,13 +180,13 @@
+@@ -180,13 +180,13 @@ void ao_read_config_files (ao_config *config);
      }                                                                   \
    }
  
 -#define awarn(format, args...) {\
 +#define awarn(format, ...) {\
-     if(device->verbose>=0){                                             \
+     if(!device || device->verbose>=0){                                  \
        if(strcmp(format,"\n")){                                          \
-         if(device->funcs->driver_info()->short_name){                   \
+         if(device && device->funcs->driver_info()->short_name){         \
 -          fprintf(stderr,"ao_%s WARNING: " format,device->funcs->driver_info()->short_name,## args); \
 +          fprintf(stderr,"ao_%s WARNING: " format,device->funcs->driver_info()->short_name,__VA_ARGS__); \
          }else{                                                          \
@@ -68,15 +68,15 @@
          }                                                               \
        }else{                                                            \
          fprintf(stderr,"\n");                                           \
-@@ -194,13 +194,13 @@
+@@ -194,13 +194,13 @@ void ao_read_config_files (ao_config *config);
      }                                                                   \
    }
  
 -#define aerror(format, args...) {                                       \
-+#define aerror(format, ...) {\
-     if(device->verbose>=0){                                             \
++#define aerror(format, ...) {                                           \
+     if(!device || device->verbose>=0){                                  \
        if(strcmp(format,"\n")){                                          \
-         if(device->funcs->driver_info()->short_name){                   \
+         if(device && device->funcs->driver_info()->short_name){         \
 -          fprintf(stderr,"ao_%s ERROR: " format,device->funcs->driver_info()->short_name,## args); \
 +          fprintf(stderr,"ao_%s ERROR: " format,device->funcs->driver_info()->short_name,__VA_ARGS__); \
          }else{                                                          \
