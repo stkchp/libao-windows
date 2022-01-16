@@ -1,7 +1,8 @@
 #pragma once
 
-// Windows 7 or higher
-#define _WIN32_WINNT 0x0601
+// Windows 10 or higher
+#define WINVER       0x0A00
+#define _WIN32_WINNT 0x0A00
 
 #include <SDKDDKVer.h>
 
