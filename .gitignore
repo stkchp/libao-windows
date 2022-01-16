@@ -31,31 +31,6 @@
 *.out
 *.app
 
-# not required file in libao
-libao/doc/
-libao/src/plugins/
-libao/*.in
-libao/*.ac
-libao/*.am
-libao/*.m4
-libao/*.sh
-libao/*/*.in
-libao/*/*.ac
-libao/*/*.am
-libao/*/*/*.in
-libao/*/*/*.ac
-libao/*/*/*.am
-libao/missing
-libao/install-sh
-libao/depcomp
-libao/libao.*
-libao/config*
-libao/src/ao.vers
-libao/src/ao_au.c
-libao/src/ao_raw.c
-libao/src/ao_aixs.c
-libao/include/ao/os_types.h
-
 # temp file
 *.user
 tmp/
@@ -64,3 +39,4 @@ build/
 
 Debug/
 Release/
+
